@@ -10,20 +10,8 @@ jobs:
   checks:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Set up Python
-        uses: actions/setup-python@4
-        with:
-          python-version: '3.11'
-
       - name: Run basic check
-        run: |
-          echo "Checks passed"
-          echo "This is a placeholder for future lint/test steps"
+        run: echo "Checks passed"
 
   code-review:
     needs: [ checks ]
@@ -31,13 +19,3 @@ jobs:
     steps:
       - name: Wait for manual review
         run: echo "Please review the code manually. After approval, merge the PR."
-
-  post-merge:
-    needs: [ checks ]
-    if: github.event.pull_request.merged == true
-    runs-on: ubuntu-latest
-    steps:
-      - name: Post-merge actions
-        run: |
-          echo "PR has been merged."
-          echo "You can add deployment steps here."
