@@ -10,8 +10,20 @@ jobs:
   checks:
     runs-on: ubuntu-latest
     steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@4
+        with:
+          python-version: '3.11'
+
       - name: Run basic check
-        run: echo "Checks passed"
+        run: |
+          echo "Checks passed"
+          echo "This is a placeholder for future lint/test steps"
 
   code-review:
     needs: [ checks ]
